@@ -1,32 +1,40 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<header>
+<header class=>
 
     <title>This is the page title</title>
     <meta charset="utf-8"/>
 </header>
+
+
+
+
 <main>
-    <body>
+    <h1 class="ourHeader">Welcome to nonexistant BurgerOnline</h1>
+
+
+    <body class="welcomeArea separateArea welcomingText"> <link rel="stylesheet" type="text/css" href="style.css">
+
     <div>
         <header>
-            <h1>Welcome to BurgerOnline</h1>
+
+            <p>
+                <strong> Select burger</strong>
+            </p>
+            <p>This is where you execute your burger selection
+            </p>
         </header>
-
-
-
-        <strong> Select burger</strong>
-
-        <p>This is where you execute your burger selection </p>
     </div>
 
 
 
 
-    <div> <!--our entire burger meun -->
+    <div class="burgerMenu welcomeArea welcomingText"> <!--our entire burger meun -->
         <div style="display: inline-block"> <!-- fire burger div -->
             <p>
-                <strong>The fire burger </strong>
-            <p> <img src="https://i.ytimg.com/vi/i7qI52gVPlA/maxresdefault.jpg" style="width:180px;height:180px;"></p>
+                <strong>The fire burger </strong> </p>
+            <p>
+             <img src="https://i.ytimg.com/vi/i7qI52gVPlA/maxresdefault.jpg" style="width:180px;height:180px;">
             </p>
             <p>
                 Ingredients:
@@ -39,9 +47,9 @@
 
         <div style="display: inline-block"> <!-- fresh burger div -->
             <p>
-                <strong>The fresh burger </strong>
-            <p> <img src="https://californiaavocado.com/wp-content/uploads/2021/03/Classic-Calif-Avocado-Cheeseburger-with-Carmelized-Onions-CAC-001-cropped-scaled.jpg" style="width:180px;height:180px;"></p>
+                <strong>The dank burger </strong>
             </p>
+            <p> <img src="https://californiaavocado.com/wp-content/uploads/2021/03/Classic-Calif-Avocado-Cheeseburger-with-Carmelized-Onions-CAC-001-cropped-scaled.jpg" style="width:180px;height:180px;"></p>
             <p>
                 Ingredients:
             </p>
@@ -56,8 +64,9 @@
         <div style="display: inline-block"> <!-- chicken burger div -->
             <p>
                 <strong>The chicken burger </strong>
-            <p> <img src="https://thescranline.com/wp-content/uploads/2022/02/crispy-chicken-burger-WEB-01.jpg" style="width:180px;height:180px;"></p>
             </p>
+            <p> <img src="https://thescranline.com/wp-content/uploads/2022/02/crispy-chicken-burger-WEB-01.jpg" style="width:180px;height:180px;"></p>
+
             <p>
                 Ingredients:
             </p>
@@ -69,16 +78,8 @@
 
     </div>
 
-    <p>
-        <strong>
-            Customer information
-        </strong>
-    </p>
-    <p>
-        This is where you provide necessary information
-    </p>
 
-    </div>
+
 
 
     </body>
@@ -86,6 +87,19 @@
 </main>
 
 <main>
+
+    <div class="separateArea" id="customerDiv"> <!-- customer div -->
+
+        <p>
+            <strong>
+                Customer information
+            </strong>
+        </p>
+        <p>
+            This is where you provide necessary information
+        </p>
+
+
     <section id="contact">
         <form>
             <p>
@@ -105,30 +119,29 @@
                 <input type="number" id="street_number" name="snumber" required="required" placeholder="House number">
             </p>
         </form>
-        <p>
-            <label for="recipient">Payment method</label><be>
+
+            <label for="recipient">Payment method</label>
             <select id="recipient" name="Klarna">
                 <option>Swish</option>
                 <option>VISA / Mastercard</option>
                 <option>Klarna</option>
             </select>
-        </p>
 
         <fieldset>
             <legend>Specify your gender</legend>
 
-            <div>
+            <div class="genderButtons">
                 <input type="radio" id="Male" name="drone" value="Male"
                        >
                 <label for="Male">Male</label>
             </div>
 
-            <div>
+            <div class="genderButtons">
                 <input type="radio" id="Female" name="drone" value="Female">
                 <label for="Female">Female</label>
             </div>
 
-            <div>
+            <div class="genderButtons">
                 <input type="radio" id="nonbinary" name="drone" value="nonbinary" >
                 <label for="nonbinary">Other</label>
             </div>
@@ -142,7 +155,7 @@
 
     </section>
 
-
+    </div>
 </main>
 
 
