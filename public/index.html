@@ -102,7 +102,7 @@
             </p>
             <p>
                 <label for="street_number">House</label><br>
-                <input type="text" id="street_number" name="snumber" required="required" placeholder="House number">
+                <input type="number" id="street_number" name="snumber" required="required" placeholder="House number">
             </p>
         </form>
         <p>
@@ -119,13 +119,18 @@
 
             <div>
                 <input type="radio" id="Male" name="drone" value="Male"
-                       checked>
+                       >
                 <label for="Male">Male</label>
             </div>
 
             <div>
                 <input type="radio" id="Female" name="drone" value="Female">
                 <label for="Female">Female</label>
+            </div>
+
+            <div>
+                <input type="radio" id="nonbinary" name="drone" value="nonbinary" >
+                <label for="nonbinary">Other</label>
             </div>
 
         </fieldset>
