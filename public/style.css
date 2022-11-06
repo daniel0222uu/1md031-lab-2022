@@ -1,4 +1,9 @@
 /*this is how to comment*/
+@media screen and (max-width: 800px) {
+    h1 {
+        font-size: 6vw;
+    }
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Island+Moments&family=Mukta:wght@200&display=swap');
@@ -51,11 +56,44 @@ button:hover{
 
 #longImage{
     width: 100%;
-    opacity: 80%;
+    opacity: 40%;
     height: 300px;
 }
 
 #longImagediv{
+    position: relative;
+    text-align: center;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+
+.wrapper{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 200px 200px 200px;
+    grid-gap: 80px;
+}
+
+.box{
+    padding: 20px;
+}
+
+.fire{
+    grid-column: 1;
+}
+
+.dank{
+    grid-column: 2;
+}
+
+.chickenburger{
+    grid-column: 3;
+}
+
+.centerLongImageText{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
