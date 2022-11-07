@@ -17,7 +17,7 @@ Your index.html file contains:
 
 
 The style.css file contains:
-- [] A rule to make the allergy information bold
+- [x] A rule to make the allergy information bold
 - [x] Different text and background color for the two different sections (burger selection and customer information)
 - [x] Change the cursor when hovering over the order button
 - [x] Adds margins to the sections and the order button
