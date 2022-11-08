@@ -15,8 +15,29 @@
 <script>
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
-
 const socket = io();
+
+
+
+
+class MenuItem{
+  constructor(name,url,kcal,glutenlac) {
+    this.name = name;
+    this.url  = url;
+    this.kcal = kcal;
+    this.gluten_and_lactose = glutenlac;
+  }
+}
+
+let burger = new MenuItem("fire","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551",400,true)
+
+const burgerArray = [new MenuItem("fire","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 400,true),
+  new MenuItem("dank","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 700,false),
+  new MenuItem("chicken","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 250,false)];
+
+
+
+
 
 export default {
   name: 'HomeView',
@@ -25,10 +46,7 @@ export default {
   },
   data: function () {
     return {
-      burgers: [ {name: "small burger", kCal: 250},
-                 {name: "standard burger", kCal: 450},
-                 {name: "large burger", kCal: 850}
-               ]
+      burgers: burgerArray
     }
   },
   methods: {
@@ -47,6 +65,9 @@ export default {
     }
   }
 }
+
+
+
 </script>
 
 <style>
