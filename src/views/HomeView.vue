@@ -186,7 +186,8 @@
         Burgers
         <Burger v-for="burger in burgers"
                 v-bind:burger="burger"
-                v-bind:key="burger.name"/>
+                v-bind:key="burger.name"
+                 />
       </div>
       <div id="map" v-on:click="addOrder">
         click here
@@ -202,7 +203,9 @@
 <script>
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
+import OneBurger from "@/components/OneBurger";
 const socket = io();
+
 
 
 
@@ -217,20 +220,19 @@ class MenuItem{
 }
 
 
-const burgerArray = [new MenuItem("fire","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 400,true),
-  new MenuItem("dank","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 400,true),
-  new MenuItem("chicken","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 400,true)]
-
+const burgerArray = [new MenuItem("fire","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 400,false),
+  new MenuItem("dank","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 250,true),
+  new MenuItem("chicken","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 700,true)]
 
 
 export default {
   name: 'HomeView',
   components: {
-    Burger
+    Burger,
   },
   data: function () {
     return {
-      burgers: burgerArray
+      burgers: burgerArray,
     }
   },
   methods: {

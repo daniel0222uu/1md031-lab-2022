@@ -1,13 +1,31 @@
 <template>
-  <div>
-    {{ burger.name }} {{ burger.kCal }}
+
+  <div class="burgerMenu welcomeArea welcomingText wrapper">
+    <div>
+      <div class="box fire">  <!--fire burger div -->
+        <p>
+          <strong> {{"The "}}{{burger.name }} {{"burger"}} </strong> </p>
+        <p>
+          <img v-bind:src="burger.url"    style="width:180px;height:180px;">
+        </p>
+        <p>
+          Contains gluten:
+        </p>
+        <ul v-if="burger.gluten_and_lactose == true" class="fatText">
+          <li> Yes</li>
+        </ul>
+      </div>
+    </div>
   </div>
-  </template>
-  
+
+
+
+</template>
   <script>
   export default {
     name: 'OneBurger',
-    props: {
+    props:
+        {
       burger: Object
     }
   }
