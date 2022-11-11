@@ -1,8 +1,6 @@
 <template>
 
-  <div class="burgerMenu welcomeArea welcomingText wrapper">
-    <div>
-      <div class="box fire">  <!--fire burger div -->
+      <div class="box">  <!--fire burger div -->
         <p>
           <strong> {{"The "}}{{burger.name }} {{"burger"}} </strong> </p>
         <p>
@@ -12,11 +10,9 @@
           Contains gluten:
         </p>
         <ul v-if="burger.gluten_and_lactose == true" class="fatText">
-          <li> Yes</li>
+          <li> Yes </li>
         </ul>
       </div>
-    </div>
-  </div>
 
 
 
@@ -26,13 +22,14 @@
     name: 'OneBurger',
     props:
         {
-      burger: Object
+      burger: Object,
     }
   }
   </script>
   
   <!-- Add "scoped" attribute to limit CSS to this component only -->
-  <style scoped>
-  
-  </style>
+<style scoped>
+
+
+</style>
   

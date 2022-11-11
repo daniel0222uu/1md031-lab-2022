@@ -25,7 +25,7 @@
 
 
 
-    <div class="welcomeArea separateArea welcomingText"> <link rel="stylesheet" type="text/css" href="style.css">
+    <div class="welcomeArea separateArea welcomingText"> <link rel="stylesheet">
 
 
 
@@ -45,51 +45,18 @@
 
 
       <div class="burgerMenu welcomeArea welcomingText wrapper"> <!--our entire burger menu -->
-        <div class="box fire"> <!-- fire burger div -->
-          <p>
-            <strong>The fire burger </strong> </p>
-          <p>
-            <img src="https://i.ytimg.com/vi/i7qI52gVPlA/maxresdefault.jpg" style="width:180px;height:180px;">
-          </p>
-          <p>
-            Ingredients:
-          </p>
-          <ul class="fatText">
-            <li> Avocado</li>
-            <li> Tomato</li>
-          </ul>
+
+        <div class="box">
+          <div>
+            <Burger v-for="burger in burgers"
+                    v-bind:burger="burger"
+                    v-bind:key="burger.name"
+                    v-bind:style="burger.gridPosition"
+            />
+          </div>
         </div>
 
-        <div class="box dank"> <!-- dank burger div -->
-          <p>
-            <strong>The dank burger </strong>
-          </p>
-          <p> <img src="https://californiaavocado.com/wp-content/uploads/2021/03/Classic-Calif-Avocado-Cheeseburger-with-Carmelized-Onions-CAC-001-cropped-scaled.jpg" style="width:180px;height:180px;"></p>
-          <p>
-            Ingredients:
-          </p>
-          <ul class="fatText">
-            <li> Cheese, dairy</li>
-            <li> Onion</li>
-            <li> Mayonaise, dairy</li>
-            <li> Bacon, pork</li>
-          </ul>
-        </div>
 
-        <div class="box chickenburger" > <!-- chicken burger div -->
-          <p>
-            <strong>The chicken burger </strong>
-          </p>
-          <p> <img src="https://thescranline.com/wp-content/uploads/2022/02/crispy-chicken-burger-WEB-01.jpg" style="width:180px;height:180px;"></p>
-
-          <p>
-            Ingredients:
-          </p>
-          <ul class="fatText">
-            <li> Cheese</li>
-            <li> Lettuce</li>
-          </ul>
-        </div>
 
       </div>
 
@@ -182,13 +149,6 @@
       <p> ® Nonexistant burgers AB</p>
     </footer>
     <div>
-      <div>
-        Burgers
-        <Burger v-for="burger in burgers"
-                v-bind:burger="burger"
-                v-bind:key="burger.name"
-                 />
-      </div>
       <div id="map" v-on:click="addOrder">
         click here
       </div>
@@ -211,18 +171,21 @@ const socket = io();
 
 
 class MenuItem{
-  constructor(name,url,kcal,glutenlac) {
+  constructor(name,url,kcal,glutenlac,position) {
     this.name = name;
     this.url  = url;
     this.kcal = kcal;
     this.gluten_and_lactose = glutenlac;
+    this.gridPosition = position;
   }
 }
 
 
-const burgerArray = [new MenuItem("fire","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 400,false),
-  new MenuItem("dank","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 250,true),
-  new MenuItem("chicken","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 700,true)]
+const burgerArray = [new MenuItem("fire","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 400,false,1),
+  new MenuItem("dank","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 250,true,2),
+  new MenuItem("chicken","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 700,true,3 )]
+
+
 
 
 export default {
@@ -232,7 +195,7 @@ export default {
   },
   data: function () {
     return {
-      burgers: burgerArray,
+      burgers: burgerArray
     }
   },
   methods: {
@@ -289,6 +252,7 @@ button:hover{
   outline-style: auto;
   box-shadow: 0 0 0 2px #5a01a7;
   transition: 0.2s;
+
 }
 
 .genderButtons{
@@ -333,25 +297,14 @@ button:hover{
 .wrapper{
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 200px 200px 200px;
   grid-gap: 80px;
 }
 
 .box{
   padding: 20px;
+  float: left;
 }
 
-.fire{
-  grid-column: 1;
-}
-
-.dank{
-  grid-column: 2;
-}
-
-.chickenburger{
-  grid-column: 3;
-}
 
 .centerLongImageText{
   position: absolute;
