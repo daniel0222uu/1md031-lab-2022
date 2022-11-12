@@ -51,8 +51,14 @@
             <Burger v-for="burger in burgers"
                     v-bind:burger="burger"
                     v-bind:key="burger.name"
-                    v-bind:style="burger.gridPosition"
             />
+          </div>
+         <!-- <div>
+            <Burger v-for="burger in burgers"
+                    v-bind:burger="burger"
+                    v-bind:key="burger.name"
+                    v-bind:style="burger.gridPosition"
+            /> -->
           </div>
         </div>
 
@@ -164,27 +170,8 @@
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
 import OneBurger from "@/components/OneBurger";
+import menu from '../assets/menu.json'
 const socket = io();
-
-
-
-
-
-class MenuItem{
-  constructor(name,url,kcal,glutenlac,position) {
-    this.name = name;
-    this.url  = url;
-    this.kcal = kcal;
-    this.gluten_and_lactose = glutenlac;
-    this.gridPosition = position;
-  }
-}
-
-
-const burgerArray = [new MenuItem("fire","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 400,false,1),
-  new MenuItem("dank","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 250,true,2),
-  new MenuItem("chicken","https://bildix.mmcloud.se/bildix/api/images/4c7ccd16-4dda-40db-b683-7a6bc14d82ff.jpeg?fit=crop&w=980&h=551", 700,true,3 )]
-
 
 
 
@@ -195,7 +182,7 @@ export default {
   },
   data: function () {
     return {
-      burgers: burgerArray
+      burgers: menu
     }
   },
   methods: {

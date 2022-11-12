@@ -9,7 +9,7 @@
         <p>
           Contains gluten:
         </p>
-        <ul v-if="burger.gluten_and_lactose == true" class="fatText">
+        <ul v-if="burger.glutenlac == true" class="fatText">
           <li> Yes </li>
         </ul>
       </div>

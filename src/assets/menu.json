@@ -1,0 +1,21 @@
+
+[
+  {
+    "name": "fire",
+    "url": "https://www.burgerdudes.se/wp-content/uploads/2020/11/bap_bbq_sway_jun21_med.jpg",
+    "kcal": 400,
+    "glutenlac": false
+  },
+  {
+    "name": "dank",
+    "url": "https://www.burgerdudes.se/wp-content/uploads/2020/11/bap_bbq_sway_jun21_med.jpg",
+    "kcal": 250,
+    "glutenlac": true
+  },
+  {
+    "name": "chicken",
+    "url": "https://www.burgerdudes.se/wp-content/uploads/2020/11/bap_bbq_sway_jun21_med.jpg",
+    "kcal": 700,
+    "glutenlac": true
+  }
+]
