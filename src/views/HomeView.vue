@@ -95,19 +95,19 @@
           <form>
             <p>
               <label for="firstname">Full name</label><br>
-              <input type="text" id="firstname" name="fn" required="required" placeholder="First and last name">
+              <input v-model="fullName" type="text" id="firstname" name="fn" required="required" placeholder="First and last name">
             </p>
             <p>
               <label for="email_adress">Email adress</label><br>
-              <input type="text" id="email_adress" name="em" required="required" placeholder="Email adress">
+              <input v-model="emailAdress" type="text" id="email_adress" name="em" required="required" placeholder="Email adress">
             </p>
             <p>
               <label for="street_name">Street</label><br>
-              <input type="text" id="street_name" name="sname" required="required" placeholder="Street name">
+              <input v-model="streetName" type="text" id="street_name" name="sname" required="required" placeholder="Street name">
             </p>
             <p>
               <label for="street_number">House</label><br>
-              <input type="number" id="street_number" name="snumber" required="required" placeholder="House number">
+              <input v-model="houseNumber" type="number" id="street_number" name="snumber" required="required" placeholder="House number">
             </p>
           </form>
 
@@ -139,7 +139,7 @@
 
           </fieldset>
 
-          <button type="submit">
+          <button v-on:click="say({label: fullName,emailAdress,streetName,houseNumber})" type="submit">
             <img src="https://www.pngall.com/wp-content/uploads/12/Order-Now-Button-PNG-Photo.png" style="width:300px;height:100px;" >
           </button>
 
@@ -159,7 +159,6 @@
         click here
       </div>
     </div>
-  </div>
 
 
   </html>
@@ -182,10 +181,17 @@ export default {
   },
   data: function () {
     return {
+      fullName: '',
+      emailAdress: '',
+      streetName: '',
+      houseNumber: '',
       burgers: menu
     }
   },
   methods: {
+    say(message){
+      console.log(message)
+    },
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
     },
