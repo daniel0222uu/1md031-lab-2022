@@ -51,14 +51,11 @@
             <Burger v-for="burger in burgers"
                     v-bind:burger="burger"
                     v-bind:key="burger.name"
+                    v-on:orderedBurger="addToOrder($event)"
+
+
             />
           </div>
-         <!-- <div>
-            <Burger v-for="burger in burgers"
-                    v-bind:burger="burger"
-                    v-bind:key="burger.name"
-                    v-bind:style="burger.gridPosition"
-            /> -->
           </div>
         </div>
 
@@ -139,7 +136,8 @@
 
           </fieldset>
 
-          <button v-on:click="say({label: fullName,emailAdress,streetName,houseNumber})" type="submit">
+
+          <button v-on:click="say({label: fullName,emailAdress,streetName,houseNumber})"   type="submit">
             <img src="https://www.pngall.com/wp-content/uploads/12/Order-Now-Button-PNG-Photo.png" style="width:300px;height:100px;" >
           </button>
 
@@ -160,7 +158,6 @@
       </div>
     </div>
 
-
   </html>
 
 </template>
@@ -168,13 +165,17 @@
 <script>
 import Burger from '../components/OneBurger.vue'
 import io from 'socket.io-client'
-import OneBurger from "@/components/OneBurger";
 import menu from '../assets/menu.json'
 const socket = io();
 
 
+let burgerArray = [];
+
+
+
 
 export default {
+
   name: 'HomeView',
   components: {
     Burger,
@@ -189,8 +190,14 @@ export default {
     }
   },
   methods: {
-    say(message){
-      console.log(message)
+    addToOrder: function (event) {
+      //this.orderedBurgers[event.name] = event.amount; den här var från labben men krångla för mycket
+      // console.log("nu trycks parent")
+      burgerArray.push(event.name);
+      console.log(burgerArray);
+    },
+    say: function(input){
+      console.log(input);
     },
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
@@ -221,9 +228,7 @@ export default {
 }
 h1{
   font-size: 6vw;
-}
-
-<!--här var det importer förut men inte längre-->
+}ad
 
 
 body {
