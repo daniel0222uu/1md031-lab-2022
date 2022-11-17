@@ -10,7 +10,7 @@
           Contains gluten:
         </p>
         <ul v-if="burger.glutenlac == true" class="fatText">
-          <li> Yes </li>
+          <li class="orangeColor"> Yes </li>
         </ul>
         <div>
 
@@ -60,6 +60,10 @@
 #plus{
   height: 20px;
   length: 20px;
+}
+
+.orangeColor{
+  color: orange;
 }
 
 </style>

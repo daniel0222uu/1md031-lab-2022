@@ -98,14 +98,14 @@
               <label for="email_adress">Email adress</label><br>
               <input v-model="emailAdress" type="text" id="email_adress" name="em" required="required" placeholder="Email adress">
             </p>
-            <p>
+          <!--  <p>
               <label for="street_name">Street</label><br>
               <input v-model="streetName" type="text" id="street_name" name="sname" required="required" placeholder="Street name">
             </p>
             <p>
               <label for="street_number">House</label><br>
               <input v-model="houseNumber" type="number" id="street_number" name="snumber" required="required" placeholder="House number">
-            </p>
+            </p>--> <!--Dessa skulle man ta bort -->
           </form>
 
           <label for="recipient">Payment method</label>
@@ -137,7 +137,7 @@
           </fieldset>
 
 
-          <button v-on:click="say({label: fullName,emailAdress,streetName,houseNumber})"   type="submit">
+          <button @click="say(fullName, emailAdress)" type="submit">
             <img src="https://www.pngall.com/wp-content/uploads/12/Order-Now-Button-PNG-Photo.png" style="width:300px;height:100px;" >
           </button>
 
@@ -153,7 +153,7 @@
       <p> ® Nonexistant burgers AB</p>
     </footer>
     <div>
-      <div id="map" v-on:click="addOrder">
+      <div id="map" v-on:click="setLocation" @click="addOrder">
         click here
       </div>
     </div>
@@ -170,7 +170,9 @@ const socket = io();
 
 
 let burgerArray = [];
-
+let customerOffset = {};
+var personalInformationArray = []; //vi måste hitta nåt sätt att pusha
+// denna in organiskt
 
 
 
@@ -182,6 +184,7 @@ export default {
   },
   data: function () {
     return {
+      location: {x: 0, y: 0},
       fullName: '',
       emailAdress: '',
       streetName: '',
@@ -190,17 +193,26 @@ export default {
     }
   },
   methods: {
+    setLocation: function(event) {
+      customerOffset = {x: event.currentTarget.getBoundingClientRect().left,
+        y: event.currentTarget.getBoundingClientRect().top};
+      console.log(customerOffset);
+    },
     addToOrder: function (event) {
       //this.orderedBurgers[event.name] = event.amount; den här var från labben men krångla för mycket
       // console.log("nu trycks parent")
       burgerArray.push(event.name);
       console.log(burgerArray);
     },
-    say: function(input){
-      console.log(input);
+    say: function(name,email){
+      personalInformationArray.push(name);
+      personalInformationArray.push(email)
+      console.log(personalInformationArray);
     },
     getOrderNumber: function () {
-      return Math.floor(Math.random()*100000);
+      //return Math.floor(Math.random()*100000); //ändrar man denna till "T" så får man bara en so
+      //dyker upp
+      return "T"
     },
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
@@ -208,7 +220,8 @@ export default {
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
+                                orderItems: burgerArray,
+                                deliveryInfo: personalInformationArray
                               }
                  );
     }
@@ -315,8 +328,9 @@ button:hover{
   font-weight: bold;
 }
   #map {
-    width: 300px;
-    height: 300px;
-    background-color: red;
+    overflow: scroll;
+    width: 1920px;
+    height: 1078px;
+    background: url("/Users/danielceoca/Desktop/Gränssnittprogrammering/Labb1/1md031-lab-2022/public/img/polacks.jpg")
   }
 </style>
