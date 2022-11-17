@@ -23,7 +23,6 @@
     name: 'DispatcherView',
     data: function () {
       return {
-        location: {x: 0, y:0},
         orders: null
       }
     },

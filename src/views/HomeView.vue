@@ -137,7 +137,7 @@
           </fieldset>
 
 
-          <button @click="say(fullName, emailAdress)" type="submit">
+          <button @click="say(fullName, emailAdress)"  type="submit">
             <img src="https://www.pngall.com/wp-content/uploads/12/Order-Now-Button-PNG-Photo.png" style="width:300px;height:100px;" >
           </button>
 
@@ -153,8 +153,9 @@
       <p> ® Nonexistant burgers AB</p>
     </footer>
     <div>
-      <div id="map" v-on:click="setLocation" @click="addOrder">
-        click here
+      <div id="dots" class="map" v-on:click="setLocation" @click="addOrder">
+        <div v-bind:style="{ left: location.x + 'px', top: location.y + 'px'}" v-bind:key="'dots' + key" >
+        </div>
       </div>
     </div>
 
@@ -195,8 +196,9 @@ export default {
   methods: {
     setLocation: function(event) {
       customerOffset = {x: event.currentTarget.getBoundingClientRect().left,
-        y: event.currentTarget.getBoundingClientRect().top};
+        y: event.currentTarget.getBoundingClientRect().top  };
       console.log(customerOffset);
+      this.location = customerOffset;
     },
     addToOrder: function (event) {
       //this.orderedBurgers[event.name] = event.amount; den här var från labben men krångla för mycket
@@ -210,9 +212,7 @@ export default {
       console.log(personalInformationArray);
     },
     getOrderNumber: function () {
-      //return Math.floor(Math.random()*100000); //ändrar man denna till "T" så får man bara en so
-      //dyker upp
-      return "T"
+      return Math.floor(Math.random()*100000); //ändrar man denna till "T" så får man bara en so
     },
     addOrder: function (event) {
       var offset = {x: event.currentTarget.getBoundingClientRect().left,
@@ -233,6 +233,26 @@ export default {
 </script>
 
 <style>
+
+#dots div {
+  position: absolute;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  width:20px;
+  height:20px;
+  text-align: center;
+}
+
+#dots {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  width:1920px;
+  height: 1078px;
+  cursor: crosshair;
+}
 
 @media screen and (max-width: 800px) {
   h1 {
@@ -327,7 +347,7 @@ button:hover{
 .fatText{
   font-weight: bold;
 }
-  #map {
+.map {
     overflow: scroll;
     width: 1920px;
     height: 1078px;
