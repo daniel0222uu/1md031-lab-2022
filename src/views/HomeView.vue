@@ -154,7 +154,7 @@
     </footer>
     <div>
       <div id="dots" class="map" v-on:click="setLocation" @click="addOrder">
-        <div v-bind:style="{ left: location.x + 'px', top: location.y + 'px'}" v-bind:key="'dots' + key" >
+        <div v-bind:style="{ left: location.x + 'px', top: location.y + 'px'}" >
         </div>
       </div>
     </div>
@@ -196,9 +196,11 @@ export default {
   methods: {
     setLocation: function(event) {
       customerOffset = {x: event.currentTarget.getBoundingClientRect().left,
-        y: event.currentTarget.getBoundingClientRect().top  };
-      console.log(customerOffset);
-      this.location = customerOffset;
+        y: event.currentTarget.getBoundingClientRect().top};
+      var exactPos = {x: event.clientX - 10 - customerOffset.x,
+                      y: event.clientY - 10 - customerOffset.y}
+      console.log(exactPos);
+      this.location = exactPos;
     },
     addToOrder: function (event) {
       //this.orderedBurgers[event.name] = event.amount; den här var från labben men krångla för mycket
