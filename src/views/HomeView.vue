@@ -109,35 +109,36 @@
           </form>
 
           <label for="recipient">Payment method</label>
-          <select id="recipient" name="Klarna">
+          <select  id="recipient" name="Klarna" v-model="selectedPayment">
             <option>Swish</option>
             <option>VISA / Mastercard</option>
             <option>Klarna</option>
+            <option>Doge coin</option>
           </select>
 
           <fieldset>
             <legend>Specify your gender</legend>
 
             <div class="genderButtons">
-              <input type="radio" id="Male" name="drone" value="Male"
-              >
+              <input type="radio" id="Male" name="drone" value="Male" v-model="pickedGender">
+
               <label for="Male">Male</label>
             </div>
 
             <div class="genderButtons">
-              <input type="radio" id="Female" name="drone" value="Female">
+              <input type="radio" id="Female" name="drone" value="Female" v-model="pickedGender">
               <label for="Female">Female</label>
             </div>
 
             <div class="genderButtons">
-              <input type="radio" id="nonbinary" name="drone" value="nonbinary" >
+              <input type="radio" id="nonbinary" name="drone" value="nonbinary" v-model="pickedGender">
               <label for="nonbinary">Other</label>
             </div>
 
           </fieldset>
 
 
-          <button @click="say(fullName, emailAdress)"  type="submit">
+          <button @click="addOrder"  type="submit">
             <img src="https://www.pngall.com/wp-content/uploads/12/Order-Now-Button-PNG-Photo.png" style="width:300px;height:100px;" >
           </button>
 
@@ -153,7 +154,7 @@
       <p> ® Nonexistant burgers AB</p>
     </footer>
     <div>
-      <div id="dots" class="map" v-on:click="setLocation" @click="addOrder">
+      <div id="dots" class="map" v-on:click="setLocation">
         <div v-bind:style="{ left: location.x + 'px', top: location.y + 'px'}" >
         </div>
       </div>
@@ -170,7 +171,6 @@ import menu from '../assets/menu.json'
 const socket = io();
 
 
-let burgerArray = [];
 let customerOffset = {};
 var personalInformationArray = []; //vi måste hitta nåt sätt att pusha
 // denna in organiskt
@@ -185,7 +185,10 @@ export default {
   },
   data: function () {
     return {
+      selectedPayment: "Swish",
+      pickedGender:"" ,
       location: {x: 0, y: 0},
+      burgerArray: [],
       fullName: '',
       emailAdress: '',
       streetName: '',
@@ -205,8 +208,8 @@ export default {
     addToOrder: function (event) {
       //this.orderedBurgers[event.name] = event.amount; den här var från labben men krångla för mycket
       // console.log("nu trycks parent")
-      burgerArray.push(event.name);
-      console.log(burgerArray);
+      this.burgerArray.push(event.name);
+      console.log(this.burgerArray);
     },
     say: function(name,email){
       personalInformationArray.push(name);
@@ -216,17 +219,17 @@ export default {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000); //ändrar man denna till "T" så får man bara en so
     },
-    addOrder: function (event) {
-      var offset = {x: event.currentTarget.getBoundingClientRect().left,
-                    y: event.currentTarget.getBoundingClientRect().top};
-      socket.emit("addOrder", { orderId: this.getOrderNumber(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
-                                orderItems: burgerArray,
-                                deliveryInfo: personalInformationArray
-                              }
-                 );
-    }
+    addOrder: function() { //min egna order add metod
+      socket.emit("addOrder", {orderId: this.getOrderNumber(),
+                                        details: {x: this.location.x,
+                                                  y: this.location.y},
+                                        orderItems: [this.burgerArray],
+                                        deliveryInfo: [this.fullName,this.emailAdress, this.pickedGender,this.selectedPayment]
+      }
+      );
+      console.log("du klickade på orderAdds");
+
+    },
   }
 }
 
