@@ -2,9 +2,10 @@
     <div id="orders">
       <div id="orderList">
         <div v-for="(order, key) in orders" v-bind:key="'order'+key">
-           #{{ key }}: {{ order.orderItems.join(": ") }} {{order.deliveryInfo.join(", ")}}
+           #{{ key }}: <strong> Burgers: </strong>  {{ order.orderItems.join("-----")}}
+           <p> <strong>Customer Information:  </strong>  {{order.deliveryInfo.join(", ")}} </p>
           <!--här kan man lägga in {{orders}}
-           så syns hela -->
+           så syns hela blir ett komma mellan i arrayen, får fixa det    -->
         </div>
         <button v-on:click="clearQueue">Clear Queue</button>
       </div>
