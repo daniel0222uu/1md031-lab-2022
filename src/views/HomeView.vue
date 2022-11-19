@@ -193,7 +193,8 @@ export default {
       emailAdress: '',
       streetName: '',
       houseNumber: '',
-      burgers: menu
+      burgers: menu,
+      theOrderedBurger: {}
     }
   },
   methods: {
@@ -207,9 +208,14 @@ export default {
     },
     addToOrder: function (event) {
       //this.orderedBurgers[event.name] = event.amount; den här var från labben men krångla för mycket
-      // console.log("nu trycks parent")
-      this.burgerArray.push(event.name);
-      console.log(this.burgerArray);
+      console.log("nu trycks parent")
+      this.theOrderedBurger[event.name] = event.amount;
+      var toConsole = Object.entries(this.theOrderedBurger);
+      console.log(toConsole);
+      //this.burgerArray.push(event.name);
+      //console.log(event.name);
+      //console.log(event.amount);
+      //console.log(this.burgerArray);
     },
     say: function(name,email){
       personalInformationArray.push(name);
@@ -223,7 +229,7 @@ export default {
       socket.emit("addOrder", {orderId: this.getOrderNumber(),
                                         details: {x: this.location.x,
                                                   y: this.location.y},
-                                        orderItems: [this.burgerArray],
+                                        orderItems: Object.entries(this.theOrderedBurger),
                                         deliveryInfo: [this.fullName,this.emailAdress, this.pickedGender,this.selectedPayment]
       }
       );

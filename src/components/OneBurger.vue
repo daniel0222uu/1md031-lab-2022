@@ -17,7 +17,7 @@
             <button @click="addBurger" id="plus">
               <img src="https://thumbs.dreamstime.com/b/plus-button-icon-plus-button-icon-vector-illustration-105545139.jpg" style="width:20px;height:20px;">
             </button>     <p>{{amountOrdered}} </p>
-            <button @click="amountOrdered--" id="minus">
+            <button @click="subtractBurger" id="minus">
               <img src="https://thumbs.dreamstime.com/b/round-red-minus-sign-icon-button-flat-remove-negative-symbol-isolated-white-background-eps-vector-file-172345750.jpg" style="width:20px;height:20px;">
             </button>
 
@@ -47,9 +47,11 @@
         this.$emit('orderedBurger', {name: this.burger.name,
                                       amount: this.amountOrdered});
       },
-      say(){
-        console.log("du klickade på plus")
-      },
+      subtractBurger: function(){
+        this.amountOrdered -= 1;
+        this.$emit('orderedBurger', {name: this.burger.name,
+                                    amount: this.amountOrdered});
+      }
     },
   }
   </script>
